@@ -2,14 +2,14 @@ Evaluations = new Mongo.Collection( 'evaluations');
 
 Evaluations.allow({
    insert: () => true,
-   update: () => false,
-   remove: () => false
+   update: () => true,
+   remove: () => true
  });
  
  Evaluations.deny({
    insert: () => false,
-   update: () => true,
-   remove: () => true
+   update: () => false,
+   remove: () => false
  });
 
 

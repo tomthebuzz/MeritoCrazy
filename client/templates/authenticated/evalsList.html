@@ -8,14 +8,14 @@
 <p></p>
 <table class="table table-bordered table-condensed">
         <thead>
-          <tr>
+          <tr>                        
             <td><strong>Prio</strong></td>
             <td><strong>Crazy Wish</strong></td>
             <td><strong>Manager ID</strong></td>
             <td><strong>Start Date</strong></td>
             <td><strong>End Date</strong></td>
             <td><strong>Status</strong></td>
-            <td style="width: 70px"><strong>Del</strong></td>
+            <td><strong>Edit / Delete</strong></td>
           </tr>
         </thead>
 
@@ -28,13 +28,27 @@
 				<td>{{evalStartDate}}</td>
 				<td>{{evalEndDate}}</td>
 				<td>{{evalStatus}}</td>
-              <td><button class="btn btn-sm btn-danger" type="button">Del</button></td>
+              <td>
+                <div>
+              	  {{#afModal collection="Evaluations" operation="update" doc=this._id}}
+              	    <button class="btn btn-fab btn-success"><i class="fa fa-pencil"></i></button>
+              	  {{/afModal}}
+                </div>
+                <div>{{#quickRemoveButton collection="Evaluations" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove}} <button class="btn btn-fab btn-danger"><i class="fa fa-paper-plane"></i></button> {{/quickRemoveButton}}
+                  </div>              
+              </td>
             </tr>
             {{/each}}
             
                     
         </tbody>
       </table>
-
+</div>
+<div class="container">
+	<strong>And here goes our Tabular table:</strong>
+	<p></p>
+	
+	{{> tabular table=TabularTables.Evals class="table table-striped table-bordered table-condensed"}}
+	
 </div>
 </template>
