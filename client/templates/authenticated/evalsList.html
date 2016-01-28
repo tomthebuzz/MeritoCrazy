@@ -1,0 +1,40 @@
+<template name="evalsList">
+<div class="jumbotron text-center" style="padding: 20px;">
+<h1>Evaluations Overview</h1>
+</div>
+
+<div class="container">
+<strong>Here goes our list:</strong>
+<p></p>
+<table class="table table-bordered table-condensed">
+        <thead>
+          <tr>
+            <td><strong>Prio</strong></td>
+            <td><strong>Crazy Wish</strong></td>
+            <td><strong>Manager ID</strong></td>
+            <td><strong>Start Date</strong></td>
+            <td><strong>End Date</strong></td>
+            <td><strong>Status</strong></td>
+            <td style="width: 70px"><strong>Del</strong></td>
+          </tr>
+        </thead>
+
+        <tbody>          
+            {{#each Evals3}}
+            <tr>
+				<td>{{prio}}</td>
+				<td>{{crazyWish}}</td>
+				<td>{{managerId}}</td>
+				<td>{{evalStartDate}}</td>
+				<td>{{evalEndDate}}</td>
+				<td>{{evalStatus}}</td>
+              <td><button class="btn btn-sm btn-danger" type="button">Del</button></td>
+            </tr>
+            {{/each}}
+            
+                    
+        </tbody>
+      </table>
+
+</div>
+</template>

@@ -1,0 +1,41 @@
+<template name="index">
+  <div class="jumbotron text-center" style="padding: 20px;">
+    <h2>A Base for your Merits</h2>
+    <p>This app is the starting point for Integration Alpha's strategy definition and objectives setting. Oh yes, and the giving and receiving of feedback along the way!</p>
+    <p><a class="btn btn-success" href="http://themeteorchef.com/base" role="button">Say thanks!</a></p>
+    <p style="font-size: 16px; color: #aaa;">Currently at v3.4.0</p>
+  </div>
+  <div class="jumbotron pull-left text-left">
+  <bl>
+  <h3>Open To Do's: </h3>
+    <li>Use Griddle instead of plain tables</li>
+    <li>Use modals from within the tables for changes</li>
+    <li>Change menue structure to summarize respective tasks for:</li>
+    	<ul class="text-center">
+    	<li>Strategy Streams</li>
+    	<li>Evaulations and Objectives</li>
+    	<li>Reviews and Feedback</li>
+    	</ul>
+    <li class="text-left">Create dashboard with summaries - (personal and corporate view)</li>
+    <li>Agree usage of email package if not used with Mailgun</li>
+  </bl>
+  </div>
+
+  <div class="container pull-left text-center">
+	<hr>
+	<h3>Active Vars / Parameters:</h3>
+	{{currentUser.emails.[0].address}}
+	{{currentRoute}}
+	{{order}}
+	<p>		
+	{{#each Evals2}}
+	    <li>
+	    <span class="pull-left">{{_id}} | {{managerId}} {{crazyWish}} {{evalStartDate}} {{evalEndDate}} {{evalStatus}}</span>
+	    <i class="fa fa-remove pull-right text-danger delete-eval"></i>
+	    </li>
+	{{/each}}	
+	</p>
+  </div>  
+
+
+</template>
