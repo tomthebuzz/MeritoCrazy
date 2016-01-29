@@ -1,26 +1,26 @@
 <template name="newEval">
 
-{{#autoForm schema="EvaluationsSchema" id="newEval" type="insert" collection="Evaluations"}}
-  
+{{#autoForm schema="EvaluationsSchema" meteormethod="insertEvaluation" id="newEval" type="method" collection="Evaluations"}}
+
   <fieldset>
   <legend>Enter Details for your new merits:</legend>
-  
+
   <div class="row">
    <div class="col m12">
 	  <div class="row">
-	   <div class="input-field col m6">	
-	   
+	   <div class="input-field col m6">
+
 	   <div class="form-group {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">
 	     <label class="control-label">{{afFieldLabelText name='emplId'}}</label>
 	     {{> afFieldInput name='emplId'}}
 	     {{#if afFieldIsInvalid name='emplId'}}
 	     <span class="help-block">{{{afFieldMessage name='emplId'}}}</span>
 	     {{/if}}
-	   </div> 
-  
- 	</div>	   
- 	<div class="input-field col m6">	 
-  
+	   </div>
+
+ 	</div>
+ 	<div class="input-field col m6">
+
   <div class="form-group {{#if afFieldIsInvalid name='managerId'}}has-error{{/if}}">
     <label class="control-label">{{afFieldLabelText name='managerId'}}</label>
     {{> afFieldInput name='managerId'}}
@@ -28,11 +28,11 @@
     <span class="help-block">{{{afFieldMessage name='managerId'}}}</span>
     {{/if}}
   </div>
-  
+
   	</div>
   	</div>
   </div>
-  
+
   <div class="form-group {{#if afFieldIsInvalid name='prio'}}has-error{{/if}}">
     <label class="control-label">{{afFieldLabelText name='prio'}}</label>
     {{> afFieldInput name='prio' options="allowed"}}
@@ -40,7 +40,7 @@
     <span class="help-block">{{{afFieldMessage name='prio'}}}</span>
     {{/if}}
   </div>
-  
+
   <div class="form-group {{#if afFieldIsInvalid name='crazyWish'}}has-error{{/if}}">
     <label class="control-label">{{afFieldLabelText name='crazyWish'}}</label>
     {{> afFieldInput name='crazyWish' icon='person'}}
@@ -50,14 +50,14 @@
   </div>
   <div class="form-group {{#if afFieldIsInvalid name='evalStartDate'}}has-error{{/if}}">
     <label class="control-label">{{afFieldLabelText name='evalStartDate'}}</label>
-    {{> afFieldInput name='evalStartDate' type="pickadate"}}
+    {{> afFieldInput name='evalStartDate' type="date"}}
     {{#if afFieldIsInvalid name='evalStartDate'}}
     <span class="help-block">{{{afFieldMessage name='evalStartDate'}}}</span>
     {{/if}}
   </div>
   <div class="form-group {{#if afFieldIsInvalid name='evalEndDate'}}has-error{{/if}}">
     <label class="control-label">{{afFieldLabelText name='evalEndDate'}}</label>
-    {{> afFieldInput name='evalEndDate' type="pickadate"}}
+    {{> afFieldInput name='evalEndDate' type="date"}}
     {{#if afFieldIsInvalid name='evalEndDate'}}
     <span class="help-block">{{{afFieldMessage name='evalEndDate'}}}</span>
     {{/if}}
@@ -69,13 +69,13 @@
     <span class="help-block">{{{afFieldMessage name='evalStatus'}}}</span>
     {{/if}}
   </div>
-  
+
 
   <div class="form-group">
     <button type="submit" class="btn btn-primary">Add Evaluation</button>
     <button type="reset" class="btn btn-default">Reset Form</button>
   </div>
- 
+
   </div>
   </fieldset>
 {{/autoForm}}

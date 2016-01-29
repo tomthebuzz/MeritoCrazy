@@ -38,13 +38,9 @@ aldeed:autoform
 agershun:alasql
 aldeed:autoform-bs-datepicker
 rajit:bootstrap3-datepicker
-gildaspk:autoform-materialize
-materialize:materialize
-poetic:materialize-scss
 alanning:roles
 random
 email
 momentjs:moment
-yogiben:autoform-modals
 aldeed:delete-button
 aldeed:tabular

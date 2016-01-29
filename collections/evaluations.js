@@ -1,15 +1,15 @@
 Evaluations = new Mongo.Collection( 'evaluations');
 
 Evaluations.allow({
-   insert: () => true,
-   update: () => true,
-   remove: () => true
- });
- 
- Evaluations.deny({
    insert: () => false,
    update: () => false,
    remove: () => false
+ });
+
+ Evaluations.deny({
+   insert: () => true,
+   update: () => true,
+   remove: () => true
  });
 
 
@@ -17,13 +17,13 @@ EvaluationsSchema = new SimpleSchema({
 	prio: {
 		label: "Priority",
 		type: String,
-		allowedValues: ["Highest", "High", "Medium", "Low", "not relevant"],	  		
+		allowedValues: ["Highest", "High", "Medium", "Low", "not relevant"],
 		autoform: {
 			afFieldInput: {
 				type: "select",
 		  		firstOption: "Select a Priority"
 				}
-			},	
+			},
 	  	},
 	evalStartDate: {
 		label: "Evaluation Start Date",
@@ -33,9 +33,9 @@ EvaluationsSchema = new SimpleSchema({
 				type: "date",
 				label: "Start Date: "
 				}
-			},	
+			},
 		},
-		
+
 	evalEndDate: {
 		label: "Evaluation End Date",
 		type: String,
@@ -44,12 +44,12 @@ EvaluationsSchema = new SimpleSchema({
 				type: "bootstrap-datepicker",
 				label: "End Date: "
 				}
-			},	
+			},
 		},
 	emplId: {
 		label: "Employee",
 		type: String,
-		defaultValue: "That's you!",				
+		defaultValue: "That's you!",
 		optional: true
 	},
 	managerId: {
@@ -76,7 +76,7 @@ EvaluationsSchema = new SimpleSchema({
 		  afFieldInput: {
 		    firstOption: "Select final performance rating"
 		  	}
-		  }		
+		  }
 	},
 	behavlFinal: {
 		label: "Final Eval Behaviour",
@@ -98,8 +98,8 @@ EvaluationsSchema = new SimpleSchema({
 				type: "textarea",
 				label: "My Crazy Wish: "
 				}
-			},	
-		
+			},
+
 	},
 	financialImpact: {
 		label: "Financial Impact",
@@ -107,87 +107,86 @@ EvaluationsSchema = new SimpleSchema({
 		decimal: true,
 	 	optional: true
 	},
-objectives: {
-    type: Array,
-    optional: true
-  },
-  'objectives.$': {
-      type: Object,
-      optional: true
-    },
-  'objectives.$.type': {
-    type: String,
-    optional: true,
-    allowedValues: ["Performance Objective", "Behavioural Objective"],
-    autoform: {
-      afFieldInput: {
-        firstOption: "Select objective type"
-      	}
-      }
-  },
-  'objectives.$.description': {
-    type: String,
-    optional: true
-  },
-  'objectives.$.focusArea': {
-    type: String,
-    optional: true,
-    allowedValues: ["Client", "Financial", "Product", "Team"],
-    autoform: {
-      afFieldInput: {
-        firstOption: "Select focus area"
-      	}
-      }
-  },
-  'objectives.$.behavArea': {
-    type: String,
-    optional: true,
-    allowedValues: ["Effort", "Challenge", "Skills / Know-How", "Communications", "Vision"],
-    autoform: {
-      afFieldInput: {
-        firstOption: "Select focus area"
-      	}
-      }
-  },
-  'objectives.$.endDate': {
-    type: Date,
-    optional: true
-  },
-  'objectives.$.billDays': {
-    type: String,
-	optional: true
-  },
-  'objectives.$.margin': {
-    type: String,
-    optional: true
-  },
-  'objectives.$.amount': {
-    type: String,
-    optional: true
-  },
-  'objectives.$.reviews': {
-      type: Array,
-      optional: true
-    },
-    'objectives.$.reviews.$': {
-        type: Object,
-        optional: true
-      },
-    'objectives.$.reviews.$.reviewer': {
-      type: String,
-      optional: true
-    },
-    'objectives.$.reviews.$.rating': {
-    type: String,
-    optional: true,
-    allowedValues: ["1", "2", "3", "4", "5", "n/a"],
-    autoform: {
-      afFieldInput: {
-        firstOption: "Select objective rating"
-      	}
-      }
-  },
-	
+// objectives: {
+//     type: Array,
+//     optional: true
+//   },
+//   'objectives.$': {
+//       type: Object,
+//       optional: true
+//     },
+//   'objectives.$.type': {
+//     type: String,
+//     optional: true,
+//     allowedValues: ["Performance Objective", "Behavioural Objective"],
+//     autoform: {
+//       afFieldInput: {
+//         firstOption: "Select objective type"
+//       	}
+//       }
+//   },
+//   'objectives.$.description': {
+//     type: String,
+//     optional: true
+//   },
+//   'objectives.$.focusArea': {
+//     type: String,
+//     optional: true,
+//     allowedValues: ["Client", "Financial", "Product", "Team"],
+//     autoform: {
+//       afFieldInput: {
+//         firstOption: "Select focus area"
+//       	}
+//       }
+//   },
+//   'objectives.$.behavArea': {
+//     type: String,
+//     optional: true,
+//     allowedValues: ["Effort", "Challenge", "Skills / Know-How", "Communications", "Vision"],
+//     autoform: {
+//       afFieldInput: {
+//         firstOption: "Select focus area"
+//       	}
+//       }
+//   },
+//   'objectives.$.endDate': {
+//     type: Date,
+//     optional: true
+//   },
+//   'objectives.$.billDays': {
+//     type: String,
+// 	optional: true
+//   },
+//   'objectives.$.margin': {
+//     type: String,
+//     optional: true
+//   },
+//   'objectives.$.amount': {
+//     type: String,
+//     optional: true
+//   },
+//   'objectives.$.reviews': {
+//       type: Array,
+//       optional: true
+//     },
+//     'objectives.$.reviews.$': {
+//         type: Object,
+//         optional: true
+//       },
+//     'objectives.$.reviews.$.reviewer': {
+//       type: String,
+//       optional: true
+//     },
+//     'objectives.$.reviews.$.rating': {
+//     type: String,
+//     optional: true,
+//     allowedValues: ["1", "2", "3", "4", "5", "n/a"],
+//     autoform: {
+//       afFieldInput: {
+//         firstOption: "Select objective rating"
+//       	}
+//       }
+  // },
 });
 
 Evaluations.attachSchema(EvaluationsSchema);

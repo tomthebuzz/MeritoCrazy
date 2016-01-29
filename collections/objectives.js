@@ -1,30 +1,34 @@
 Objectives = new Mongo.Collection( 'objectives');
 
 var ObjSchema = new SimpleSchema({
-	objId: {
-		label: "Objective ID",
-		type: String,
-		defaultValue: "{{nextObjNumber}}"
-	},
+  "evaluationId": {
+    type: String,
+    label: "ID of the evaluation this objective is related to."
+  },
 	"type": {
 	    type: String,
-	    label: "Objective Type"
+	    label: "Objective Type",
+      optional: true
 	},
 	"focus": {
     type: String,
-    label: "Objective Focus"
+    label: "Objective Focus",
+    optional: true
 	},
 	"description": {
 		label: "Description",
-		type: String
+		type: String,
+    optional: true
 	},
 	"objStartDate": {
 		label: "Objective Start Date",
-		type: Date
+		type: Date,
+    optional: true
 	},
 	"objEndDate": {
 		label: "Objective End Date",
-		type: Date
+		type: Date,
+    optional: true
 	},
 	"days": {
 		label: "Billable Days",
@@ -36,7 +40,7 @@ var ObjSchema = new SimpleSchema({
 	"margin": {
 		label: "Margin",
 		type: Number,
-		decimal: true,				
+		decimal: true,
 		optional: true
 	},
 	"amount": {
