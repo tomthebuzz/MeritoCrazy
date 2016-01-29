@@ -1,6 +1,6 @@
 Template.evalsList.onCreated( function() {
   var self = this;
-  self.autorun(function() {	   
+  self.autorun(function() {
   		self.subscribe( 'evalsList' );
 		});
 });
@@ -9,7 +9,7 @@ Template.evalsList.helpers({
     Evals3: function () {
         var Evals3 = Evaluations.find({},{sort: {prio: 1}});
         return Evals3;
-    }, 
+    },
     onError: function () {
       return function (error) { Bert.alert( error, "warning", 'growl-top-right' ); };
     },
@@ -25,6 +25,15 @@ Template.evalsList.helpers({
       };
     }
 });
+
+Template.evalsList.events({
+  'click [data-edit-eval]' ( event, template ) {
+    let evalId = $( event.target ).closest( 'button' ).data( 'edit-eval' );
+    console.log( evalId );
+    Session.set( 'currentEvaluationId', evalId );
+  }
+});
+
 
 TabularTables = {};
 
@@ -61,9 +70,8 @@ TabularTables.Evals = new Tabular.Table({
   ]
 });
 
-
 // Template.evalsList.helpers({
-//    Evals: function () { 
+//    Evals: function () {
 //         return alasql('SELECT * FROM ?', [Evaluations]);
 //      }
 //});

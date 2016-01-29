@@ -2,7 +2,8 @@ let administrators = [
   {
     name: { first: 'Admin', last: 'McAdmin' },
     email: 'admin@admin.com',
-    password: 'password'
+    password: 'password',
+    roles: [ 'admin' ]
   }
 ];
 
@@ -27,14 +28,7 @@ let _createUsers = ( users ) => {
         userExists = _checkIfUserExists( user.email );
 
     if ( !userExists ) {
-      let userId  = _createUser( user ),
-                isAdmin = _checkIfAdmin( user.email );
-      
-      if ( isAdmin ) {
-        Roles.setUserRoles( userId, 'admin' );
-      } else {         
-        Roles.setUserRoles( userId, 'employee' );
-      }
+      _createUser( user );
     }
   }
 };
@@ -44,19 +38,17 @@ let _checkIfUserExists = ( email ) => {
 };
 
 let _createUser = ( user ) => {
-  Accounts.createUser({
+  let userId = Accounts.createUser({
     email: user.email,
     password: user.password,
     profile: {
       name: user.name
     }
   });
-};
 
-let _checkIfAdmin = ( email ) => {
-  return _.find( administrators, ( admin ) => {
-    return admin.email === email;
-  });
+  if ( userId ) {
+    Roles.setUserRoles( userId, user.roles );
+  }
 };
 
 let _generateFakeUsers = ( count ) => {
@@ -66,7 +58,8 @@ let _generateFakeUsers = ( count ) => {
     users.push({
       name: { first: faker.name.firstName(), last: faker.name.lastName() },
       email: faker.internet.email(),
-      password: 'password'
+      password: 'password',
+      roles: [ 'employee' ]
     });
   }
 
