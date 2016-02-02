@@ -10,6 +10,7 @@
 <table class="table table-bordered table-condensed">
         <thead>
           <tr>
+            <td><strong>Employee</strong></td>
             <td><strong>Prio</strong></td>
             <td><strong>Crazy Wish</strong></td>
             <td><strong>Manager ID</strong></td>
@@ -23,6 +24,7 @@
         <tbody>
             {{#each Evals3}}
             <tr>
+				<td>{{emplId}}</td>
 				<td>{{prio}}</td>
 				<td>{{crazyWish}}</td>
 				<td>{{managerId}}</td>
@@ -44,12 +46,5 @@
 
         </tbody>
       </table>
-</div>
-<div class="container">
-	<strong>And here goes our Tabular table:</strong>
-	<p></p>
-
-	{{> tabular table=TabularTables.Evals class="table table-striped table-bordered table-condensed"}}
-
 </div>
 </template>

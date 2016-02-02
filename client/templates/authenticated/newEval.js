@@ -1,1 +1,1 @@
-AutoForm.setDefaultTemplate('materialize');
+AutoForm.setDefaultTemplate('bootstrap3');

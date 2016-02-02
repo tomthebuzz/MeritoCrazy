@@ -6,13 +6,27 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="add-objective">Add Objective</h4>
         </div>
-        <div class="modal-body">
-          <table class="table table-bordered">
+<form id="send-invite-form">
+  <div class="modal-body">
+  		<table class="table table-bordered table-condensed">
+			<thead>
+				<tr>
+				 <td><strong>Type</strong></td>
+				 <td><strong>Focus</strong></td>
+				 <td><strong>Description</strong></td>
+				</tr>
+			</thead>
             <tbody>
               {{#each objectives}}
                 <tr>
                   <td>
-                    <input id="editObject-{{_id}}" type="text" class="form-control" name="editObjective" value="{{description}}">
+                    <input id="editObjType-{{_id}}" type="select" class="form-control" name="editObjType" value="{{type}}">
+                  </td>
+                  <td>
+                    <input id="editObjFocus-{{_id}}" type="select" class="form-control" name="editObjFocus" value="{{focus}}">
+                  </td>
+                  <td>
+                    <input id="editObject-{{_id}}" type="text" class="form-control" name="editObjective" value="{{description}}]">
                   </td>
                 </tr>
               {{/each}}
@@ -24,6 +38,7 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save Objectives</button>
         </div>
+  </form>
       </div>
     </div>
   </div>

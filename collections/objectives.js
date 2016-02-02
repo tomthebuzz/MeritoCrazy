@@ -8,7 +8,8 @@ var ObjSchema = new SimpleSchema({
 	"type": {
 	    type: String,
 	    label: "Objective Type",
-      optional: true
+      optional: true,
+      allowedValues: ["Performance Objective", "Behavioural Objective"]
 	},
 	"focus": {
     type: String,

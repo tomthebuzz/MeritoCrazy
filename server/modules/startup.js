@@ -7,7 +7,7 @@ let startup = () => {
 
 let _setEnvironmentVariables = () => {
   let settings = Meteor.settings.private;
-  process.env.MAIL_URL = "smtp://postmaster%40mg.integrationalpha.com:d2a9587339f7088475fd7f618d1c4353@smtp.mailgun.org:587";
+  process.env.MAIL_URL = "smtp://postmaster%40integrationalpha.com:d2a9587339f7088475fd7f618d1c4353@smtp.mailgun.org:587";
 };
 
 let _setBrowserPolicies = () => {};

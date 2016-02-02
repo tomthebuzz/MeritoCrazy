@@ -21,9 +21,12 @@ Template.objectiveModal.helpers({
 Template.objectiveModal.events({
   'keyup [name="editObjective"]' ( event, template ) {
     if ( event.keyCode === 13 ) {
-      let objective = event.target.value;
-
-      Meteor.call( 'editObjective', { _id: this._id, description: objective }, ( error, response ) => {
+//      let objective = event.target.value,
+      description  = template.find( "[name='editObjective'] option:selected" ).value,
+      type  = template.find( "[name='editObjType'] option:selected" ).value,
+      focus  = template.find( "[name='editObjFocus'] option:selected" ).value;
+  
+      Meteor.call( 'editObjective', { _id: this._id, type: type, focus: focus, description: objective }, ( error, response ) => {
         if ( error ) {
           Bert.alert( error.reason, 'danger' );
         } else {
