@@ -28,6 +28,12 @@
                   <td>
                     <input id="editObject-{{_id}}" type="text" class="form-control" name="editObjective" value="{{description}}]">
                   </td>
+                  <td>
+                  <div>{{#quickRemoveButton collection="Objectives" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove}}
+				    <i class="fa fa-remove pull-right text-danger delete-eval"></i>       
+                   {{/quickRemoveButton}}
+                    </div>
+                  </td>
                 </tr>
               {{/each}}
             </tbody>
@@ -36,7 +42,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save Objectives</button>
         </div>
   </form>
       </div>

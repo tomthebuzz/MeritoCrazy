@@ -11,14 +11,14 @@
        <div class="row">
          <div class="col-sm-5">
 			  <label class="control-label {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">{{afFieldLabelText name='emplId'}}</label>
-			  {{> afFieldInput name='emplId'}}
+			  {{> afFieldInput name='emplId' options=empls}}
 			  {{#if afFieldIsInvalid name='emplId'}}
 			  <span class="help-block">{{{afFieldMessage name='emplId'}}}</span>
 			  {{/if}}
          </div>
          <div class="col-sm-5">
 			  <label class="control-label {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">{{afFieldLabelText name='managerId'}}</label>
-			  {{> afFieldInput name='managerId'}}
+			  {{> afFieldInput name='managerId' options=mngrs}}
 			  {{#if afFieldIsInvalid name='managerId'}}
 			  <span class="help-block">{{{afFieldMessage name='managerId'}}}</span>
 			  {{/if}}

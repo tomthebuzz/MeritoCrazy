@@ -9,12 +9,18 @@ var ObjSchema = new SimpleSchema({
 	    type: String,
 	    label: "Objective Type",
       optional: true,
-      allowedValues: ["Performance Objective", "Behavioural Objective"]
+      allowedValues: ["Performance", "Behavioural"]
 	},
 	"focus": {
     type: String,
     label: "Objective Focus",
-    optional: true
+    optional: true,
+    allowedValues: ["Client", "Financial", "Product", "Team"],
+    autoform: {
+	    afFieldInput: {
+    	firstOption: "Select focus area"
+    	}
+      }
 	},
 	"description": {
 		label: "Description",

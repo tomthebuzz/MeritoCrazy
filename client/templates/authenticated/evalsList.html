@@ -33,12 +33,19 @@
 				<td>{{evalStatus}}</td>
               <td>
                 <div>
-              	  <button data-edit-eval="{{_id}}" class="btn btn-fab btn-success" data-toggle="modal" data-target="#add-objective-modal">
+                	  <button data-edit-eval="{{_id}}" class="btn btn-fab btn-success" data-toggle="modal" data-target="#editEval-modal">
                     <i class="fa fa-pencil"></i>
                   </button>
                 </div>
-                <div>{{#quickRemoveButton collection="Evaluations" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove}} <button class="btn btn-fab btn-danger"><i class="fa fa-paper-plane"></i></button> {{/quickRemoveButton}}
-                  </div>
+                <div>
+              	  <button data-edit-obj="{{_id}}" class="btn btn-fab btn-success" data-toggle="modal" data-target="#add-objective-modal">
+                    <i class="fa fa-eye"></i>
+                  </button>
+                </div>
+                <div><button class="btn btn-fab btn-danger">
+                	{{> quickRemoveButton collection="Evaluations" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove}}
+                	<i class="fa fa-paper-plane"></i></button>                   
+                </div>
               </td>
             </tr>
             {{/each}}

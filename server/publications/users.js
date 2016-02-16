@@ -10,3 +10,9 @@ Meteor.publish( 'users', function() {
     return null;
   }
 });
+
+Meteor.publish( 'employees', function() {
+    return [
+      Meteor.users.find( {}, { fields: { "profile.name.first": 1, "profile.name.last": 1, "roles": 1 } } )
+      ]
+});

@@ -107,38 +107,7 @@ EvaluationsSchema = new SimpleSchema({
 		decimal: true,
 	 	optional: true
 	},
-// objectives: {
-//     type: Array,
-//     optional: true
-//   },
-//   'objectives.$': {
-//       type: Object,
-//       optional: true
-//     },
-//   'objectives.$.type': {
-//     type: String,
-//     optional: true,
-//     allowedValues: ["Performance Objective", "Behavioural Objective"],
-//     autoform: {
-//       afFieldInput: {
-//         firstOption: "Select objective type"
-//       	}
-//       }
-//   },
-//   'objectives.$.description': {
-//     type: String,
-//     optional: true
-//   },
-//   'objectives.$.focusArea': {
-//     type: String,
-//     optional: true,
-//     allowedValues: ["Client", "Financial", "Product", "Team"],
-//     autoform: {
-//       afFieldInput: {
-//         firstOption: "Select focus area"
-//       	}
-//       }
-//   },
+
 //   'objectives.$.behavArea': {
 //     type: String,
 //     optional: true,

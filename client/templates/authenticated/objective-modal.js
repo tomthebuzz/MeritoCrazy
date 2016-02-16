@@ -19,6 +19,14 @@ Template.objectiveModal.helpers({
 });
 
 Template.objectiveModal.events({
+	beforeRemove: function () {
+	  return function (collection, id) {
+ 	    var doc = collection.findOne(id);
+	    if (confirm('Really delete "' + doc._id + '"?')) {
+	      this.remove();
+	    }
+	  };
+	},
   'keyup [name="editObjective"]' ( event, template ) {
     if ( event.keyCode === 13 ) {
 //      let objective = event.target.value,
