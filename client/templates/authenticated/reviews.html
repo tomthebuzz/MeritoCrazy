@@ -1,0 +1,10 @@
+<template name="reviews">
+  <h3>Reviewing Evaluation</h3>
+  <label>Evaluation Score</label>
+  <input type="text" class="form-control">
+  <ol>
+    {{#each objectives}}
+      <li>{{description}} <input type="text" class="form-control" placeholder="score"></li>
+    {{/each}}
+  </ol>
+</template>

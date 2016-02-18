@@ -13,6 +13,10 @@ Template.evalsList.helpers({
 });
 
 Template.evalsList.events({
+  'click [data-edit-eval]' ( event, template ) {
+    let eval = $( event.target ).closest( 'button' ).data( 'edit-eval' );
+    Session.set( 'editingEval', eval );
+  },
   'click [data-edit-obj]' ( event, template ) {
     let evalId = $( event.target ).closest( 'button' ).data( 'editObj' );
     console.log( evalId );

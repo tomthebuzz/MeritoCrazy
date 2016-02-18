@@ -1,5 +1,6 @@
 <template name="evalsList">
   {{> objectiveModal}}
+  {{> editEvalModal}}
 <div class="jumbotron text-center" style="padding: 20px;">
 <h1>Evaluations Overview</h1>
 </div>
@@ -24,10 +25,10 @@
         <tbody>
             {{#each Evals3}}
             <tr>
-				<td>{{emplId}}</td>
+				<td>{{getUserName emplId}}</td>
 				<td>{{prio}}</td>
 				<td>{{crazyWish}}</td>
-				<td>{{managerId}}</td>
+				<td>{{getUserName managerId}}</td>
 				<td>{{evalStartDate}}</td>
 				<td>{{evalEndDate}}</td>
 				<td>{{evalStatus}}</td>
@@ -44,7 +45,7 @@
                 </div>
                 <div><button class="btn btn-fab btn-danger">
                 	{{> quickRemoveButton collection="Evaluations" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove}}
-                	<i class="fa fa-paper-plane"></i></button>                   
+                	<i class="fa fa-paper-plane"></i></button>
                 </div>
               </td>
             </tr>

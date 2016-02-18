@@ -6,97 +6,79 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="edit-eval">Edit Evaluation</h4>
         </div>
-<form id="send-invite-form">
-  <div class="modal-body">
-  		{{#autoForm schema="EvaluationsSchema" meteormethod="updateEvaluation" id="newEval" type="method" collection="Evaluations"}}
-  		
-  		  <fieldset>
-  		  <legend>Update your merits:</legend>
-  		
-  		<div class="row">
-  		   <div class="col-sm-12 col-sm-12">
-  		     <div class="form-group">
-  		       <div class="row">
-  		         <div class="col-sm-5">
-  					  <label class="control-label {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">{{afFieldLabelText name='emplId'}}</label>
-  					  {{> afFieldInput name='emplId' options=empls}}
-  					  {{#if afFieldIsInvalid name='emplId'}}
-  					  <span class="help-block">{{{afFieldMessage name='emplId'}}}</span>
-  					  {{/if}}
-  		         </div>
-  		         <div class="col-sm-5">
-  					  <label class="control-label {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">{{afFieldLabelText name='managerId'}}</label>
-  					  {{> afFieldInput name='managerId' options=mngrs}}
-  					  {{#if afFieldIsInvalid name='managerId'}}
-  					  <span class="help-block">{{{afFieldMessage name='managerId'}}}</span>
-  					  {{/if}}
-  		         </div>
-  		       </div>
-  		     </div>
-  		       <div class="row">     	
-  			     <div class="col-sm-5">
-  				  <label class="control-label {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">{{afFieldLabelText name='prio'}}</label>
-  				  {{> afFieldInput name='prio' options="allowed"}}
-  				  {{#if afFieldIsInvalid name='prio'}}
-  				  <span class="help-block">{{{afFieldMessage name='prio'}}}</span>
-  				  {{/if}}
-  				</div>
-  			    <div class="col-sm-5">
-  					  <label class="control-label {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">{{afFieldLabelText name='evalStatus'}}</label>
-  					  {{> afFieldInput name='evalStatus' options="allowed"}}
-  					  {{#if afFieldIsInvalid name='evalStatus'}}
-  					  <span class="help-block">{{{afFieldMessage name='evalStatus'}}}</span>
-  					  {{/if}}
-  				 </div>
-  			    </div>	   
-  			   <p></p>
-  			   <div class="form-group">
-  		        <div class="row">
-  		         <div class="col-sm-5">
-  					  <label class="control-label {{#if afFieldIsInvalid name='evalStartDate'}}has-error{{/if}}">{{afFieldLabelText name='evalStartDate'}}</label>
-  					  {{> afFieldInput name='evalStartDate' type="date"}}
-  					  {{#if afFieldIsInvalid name='evalStartDate'}}
-  					  <span class="help-block">{{{afFieldMessage name='evalStartDate'}}}</span>
-  					  {{/if}}
-  		         </div>
-  		         <div class="col-sm-5">
-  					  <label class="control-label {{#if afFieldIsInvalid name='evalEndDate'}}has-error{{/if}}">{{afFieldLabelText name='evalEndDate'}}</label>
-  					  {{> afFieldInput name='evalEndDate' type="date"}}
-  					  {{#if afFieldIsInvalid name='evalEndDate'}}
-  					  <span class="help-block">{{{afFieldMessage name='evalEndDate'}}}</span>
-  					  {{/if}}
-  		         </div>
-  		      	</div>
-  		   	 </div> 	
-  		   </div>	   
-  			<div class="form-group">  
-  		     <div class="row"> 	
-  			     <div class="col-sm-10">
-  			     	 <label class="control-label {{#if afFieldIsInvalid name='emplId'}}has-error{{/if}}">{{afFieldLabelText name='crazyWish'}}</label>
-  			     	  {{> afFieldInput name='crazyWish' icon='person'}}
-  			     	  {{#if afFieldIsInvalid name='crazyWish'}}
-  			     	  <span class="help-block">{{{afFieldMessage name='crazyWish'}}}</span>
-  			     	  {{/if}}
-  			     </div>
-  			  </div>
-  		    </div>
-  		     
-  			<div class="form-group">
-  			 	<div class="row"> 	
-  				  <button type="submit" class="btn btn-primary">Add Evaluation</button>
-  				  <button type="reset" class="btn btn-default">Reset Form</button>
-  				</div>
-  		    </div>
-  		 </div>
-  		 </fieldset>
-  		{{/autoForm}}		
-  		          
-  		<button class="btn btn-success editEval">Add Objective</button>
-  </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-  </form>
+        <form id="send-invite-form">
+          <div class="modal-body">
+            <div class="row">
+              <div class="form-group clearfix">
+                <div class="col-sm-6">
+                  <label class="control-label">Employee ID</label>
+                  <select name="emplId" class="form-control">
+                    {{#each empls}}
+                      <option selected="{{selected _id evaluation.emplId}}" value="{{_id}}">{{name.first}} {{name.last}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="control-label">Manager ID</label>
+                  <select name="managerId" class="form-control">
+                    {{#each mngrs}}
+                      <option selected="{{selected _id evaluation.managerId}}" value="{{_id}}">{{name.first}} {{name.last}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group clearfix">
+                <div class="col-sm-6">
+                  <label class="control-label">Priority</label>
+                  <select class="form-control" name="prio">
+                    <option selected="{{selected evaluation.prio 'Highest'}}" value="Highest">Highest</option>
+                    <option selected="{{selected evaluation.prio 'High'}}" value="High">High</option>
+                    <option selected="{{selected evaluation.prio 'Medium'}}" value="Medium">Medium</option>
+                    <option selected="{{selected evaluation.prio 'Low'}}" value="Low">Low</option>
+                    <option selected="{{selected evaluation.prio 'not relevant'}}" value="not relevant">not relevant</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="control-label">Status</label>
+                  <select class="form-control" name="evalStatus">
+                    <option selected="{{selected evaluation.evalStatus 'Draft'}}" value="Draft">Draft</option>
+                    <option selected="{{selected evaluation.evalStatus 'Discuss'}}" value="Discuss">Discuss</option>
+                    <option selected="{{selected evaluation.evalStatus 'Active'}}" value="Active">Active</option>
+                    <option selected="{{selected evaluation.evalStatus 'Review'}}" value="Review">Review</option>
+                    <option selected="{{selected evaluation.evalStatus 'Final'}}" value="Final">Final</option>
+                    <option selected="{{selected evaluation.evalStatus 'Archive'}}" value="Archive">Archive</option>
+                  </select>
+                </div>
+               </div>
+            </div>
+            <div class="row">
+              <div class="form-group clearfix">
+                <div class="col-sm-6">
+                  <label class="control-label">Start Date</label>
+                  <input type="date" name="evalStartDate" class="form-control" value="{{evaluation.evalStartDate}}">
+                </div>
+                <div class="col-sm-6">
+                 <label class="control-label">End Date</label>
+                 <input type="date" name="evalEndDate" class="form-control" value="{{evaluation.evalEndDate}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group clearfix">
+                <div class="col-sm-12">
+                  <label class="control-label">Crazy Wish</label>
+                  <input type="text" name="crazyWish" class="form-control" value="{{evaluation.crazyWish}}">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Edit Form</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

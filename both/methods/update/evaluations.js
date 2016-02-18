@@ -1,15 +1,23 @@
 Meteor.methods({
   editEvaluation( evaluation ) {
-    check( evaluation, Object );
+    check( evaluation, {
+      _id: String,
+      emplId: String,
+      managerId: String,
+      prio: String,
+      evalStatus: String,
+      evalStartDate: String,
+      evalEndDate: String,
+      crazyWish: String
+    });
 
-    let evalId = evaluations._id;
-    delete evaluations._id;
+    let evalId = evaluation._id;
+    delete evaluation._id;
 
     try {
-      evaluations.update( evalId, {
-        $set: objective
+      Evaluations.update( evalId, {
+        $set: evaluation
       });
-      return documentId;
     } catch( exception ) {
       return exception;
     }

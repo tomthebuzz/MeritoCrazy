@@ -1,4 +1,4 @@
-Meteor.publish( 'objectiveModal', function( evalId ) {
+Meteor.publish( 'review', function( evalId ) {
   check( evalId, Match.OneOf( String, null ) );
 
   return [

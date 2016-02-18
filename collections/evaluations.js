@@ -107,55 +107,38 @@ EvaluationsSchema = new SimpleSchema({
 		decimal: true,
 	 	optional: true
 	},
-
-//   'objectives.$.behavArea': {
-//     type: String,
-//     optional: true,
-//     allowedValues: ["Effort", "Challenge", "Skills / Know-How", "Communications", "Vision"],
-//     autoform: {
-//       afFieldInput: {
-//         firstOption: "Select focus area"
-//       	}
-//       }
-//   },
-//   'objectives.$.endDate': {
-//     type: Date,
-//     optional: true
-//   },
-//   'objectives.$.billDays': {
-//     type: String,
-// 	optional: true
-//   },
-//   'objectives.$.margin': {
-//     type: String,
-//     optional: true
-//   },
-//   'objectives.$.amount': {
-//     type: String,
-//     optional: true
-//   },
-//   'objectives.$.reviews': {
-//       type: Array,
-//       optional: true
-//     },
-//     'objectives.$.reviews.$': {
-//         type: Object,
-//         optional: true
-//       },
-//     'objectives.$.reviews.$.reviewer': {
-//       type: String,
-//       optional: true
-//     },
-//     'objectives.$.reviews.$.rating': {
-//     type: String,
-//     optional: true,
-//     allowedValues: ["1", "2", "3", "4", "5", "n/a"],
-//     autoform: {
-//       afFieldInput: {
-//         firstOption: "Select objective rating"
-//       	}
-//       }
-  // },
+  reviews: {
+    type: [ Object ],
+    label: 'Reviews for this evaluation.',
+    optional: true
+  },
+  "reviews.$.reviewerId": {
+    type: String,
+    label: 'User ID of the user performing this review.',
+    optional: true
+  },
+  "reviews.$.evalScore": {
+    type: String,
+    allowedValues: ["1", "2", "3", "4", "5", "n/a"],
+    label: 'The overal score for this evaluation.',
+    optional: true
+  },
+  "reviews.$.objectiveScores": {
+    type: [ Object ],
+    label: 'Reviews for each objective in this evaluation.',
+    optional: true
+  },
+  "reviews.$.objectiveScores.$.objectiveId": {
+    type: String,
+    label: 'ID of the objective being reviewed.',
+    optional: true
+  },
+  "reviews.$.objectiveScores.$.score": {
+    type: String,
+    allowedValues: ["1", "2", "3", "4", "5", "n/a"],
+    label: 'Score of the objective being reviewed.',
+    optional: true
+  }
 });
 
 Evaluations.attachSchema(EvaluationsSchema);

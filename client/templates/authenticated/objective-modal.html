@@ -6,44 +6,47 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="add-objective">Add Objective</h4>
         </div>
-<form id="send-invite-form">
-  <div class="modal-body">
-  		<table class="table table-bordered table-condensed">
-			<thead>
-				<tr>
-				 <td><strong>Type</strong></td>
-				 <td><strong>Focus</strong></td>
-				 <td><strong>Description</strong></td>
-				</tr>
-			</thead>
-            <tbody>
-              {{#each objectives}}
-                <tr>
-                  <td>
-                    <input id="editObjType-{{_id}}" type="select" class="form-control" name="editObjType" value="{{type}}">
-                  </td>
-                  <td>
-                    <input id="editObjFocus-{{_id}}" type="select" class="form-control" name="editObjFocus" value="{{focus}}">
-                  </td>
-                  <td>
-                    <input id="editObject-{{_id}}" type="text" class="form-control" name="editObjective" value="{{description}}]">
-                  </td>
-                  <td>
-                  <div>{{#quickRemoveButton collection="Objectives" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove}}
-				    <i class="fa fa-remove pull-right text-danger delete-eval"></i>       
-                   {{/quickRemoveButton}}
-                    </div>
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-          <button class="btn btn-success add-objective">Add Objective</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-  </form>
+        <form id="add-objective-form">
+          <div class="modal-body">
+        		<table class="table table-bordered table-condensed">
+        			<thead>
+        				<tr>
+        				 <td><strong>Type</strong></td>
+        				 <td><strong>Focus</strong></td>
+        				 <td><strong>Description</strong></td>
+        				</tr>
+        			</thead>
+              <tbody>
+                {{#each objectives}}
+                  <tr>
+                    <td>
+                      <select data-edit-objective name="type_{{_id}}" class="form-control">
+                        <option selected="{{selected type 'Performance'}}" value="Performance">Performance</option>
+                        <option selected="{{selected type 'Behavioural'}}" value="Behavioural">Behavioural</option>
+                      </select>
+                    </td>
+                    <td>
+                      <!-- "Client", "Financial", "Product", "Team" -->
+                      <select data-edit-objective name="focus_{{_id}}" class="form-control">
+                        <option selected="{{selected focus 'Client'}}" value="Client">Client</option>
+                        <option selected="{{selected focus 'Financial'}}" value="Financial">Financial</option>
+                        <option selected="{{selected focus 'Product'}}" value="Product">Product</option>
+                        <option selected="{{selected focus 'Team'}}" value="Team">Team</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input data-edit-objective type="text" class="form-control" name="description_{{_id}}" value="{{description}}">
+                    </td>
+                    <td>
+                      <button type="button" class="delete-objective"><i class="fa fa-remove text-danger"></i></button>
+                    </td>
+                  </tr>
+                {{/each}}
+               </tbody>
+             </table>
+             <button type="button" class="btn btn-success add-objective">Add Objective</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

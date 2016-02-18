@@ -9,7 +9,6 @@ Meteor.methods({
       Objectives.update( objectiveId, {
         $set: objective
       });
-      return documentId;
     } catch( exception ) {
       return exception;
     }

@@ -1,9 +1,26 @@
+let editObjective = ( item, template ) => {
+  let update = {
+    _id: item._id,
+    description: template.find( `[name='description_${ item._id }']` ).value,
+    type: template.find( `[name='type_${ item._id }']` ).value,
+    focus: template.find( `[name='focus_${ item._id }']` ).value
+  };
+
+  Meteor.call( 'editObjective', update, ( error, response ) => {
+    if ( error ) {
+      Bert.alert( error.reason, 'danger' );
+    } else {
+      Bert.alert( 'Worked', 'success' );
+    }
+  });
+};
+
 Template.objectiveModal.onCreated( () => {
   let template = Template.instance();
 
   Tracker.autorun( function() {
     let evalId = Session.get( 'currentEvaluationId' );
-    Meteor.subscribe( 'evaluation', evalId );
+    Meteor.subscribe( 'objectiveModal', evalId );
   });
 });
 
@@ -19,29 +36,25 @@ Template.objectiveModal.helpers({
 });
 
 Template.objectiveModal.events({
-	beforeRemove: function () {
-	  return function (collection, id) {
- 	    var doc = collection.findOne(id);
-	    if (confirm('Really delete "' + doc._id + '"?')) {
-	      this.remove();
-	    }
-	  };
-	},
-  'keyup [name="editObjective"]' ( event, template ) {
+  'submit form' ( event ) {
+    event.preventDefault();
+  },
+  'click .delete-objective' ( event, template ) {
+    Meteor.call( 'deleteObjective', this._id, ( error ) => {
+      if ( error ) {
+        Bert.alert( error.reason, 'danger' );
+      } else {
+        Bert.alert( 'Worked', 'success' );
+      }
+    });
+  },
+  'keyup [data-edit-objective]' ( event, template ) {
     if ( event.keyCode === 13 ) {
-//      let objective = event.target.value,
-      description  = template.find( "[name='editObjective'] option:selected" ).value,
-      type  = template.find( "[name='editObjType'] option:selected" ).value,
-      focus  = template.find( "[name='editObjFocus'] option:selected" ).value;
-  
-      Meteor.call( 'editObjective', { _id: this._id, type: type, focus: focus, description: objective }, ( error, response ) => {
-        if ( error ) {
-          Bert.alert( error.reason, 'danger' );
-        } else {
-          Bert.alert( 'Worked', 'success' );
-        }
-      });
+      editObjective( this, template );
     }
+  },
+  'change select[data-edit-objective]' ( event, template ) {
+    editObjective( this, template );
   },
   'click .add-objective' ( event, template ) {
     let evalId = Session.get( 'currentEvaluationId' );

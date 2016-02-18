@@ -1,40 +1,40 @@
 Template.editEvalModal.onCreated( () => {
   let template = Template.instance();
-  var self = this;
-  self.autorun(function() {
-  		self.subscribe( 'employees' );
-  		});
 
-  Tracker.autorun( function() {
-    let evalId = Session.get( 'currentEvaluationId' );
-    Meteor.subscribe( 'evaluation', evalId );
+  template.autorun(function() {
+    template.subscribe( 'employees' );
   });
-  
-  var newEvalHook = {
-  	  onSuccess: function () {
-  		  FlowRouter.go('evalsList');        },
-  	  onError: function() {
-  	    Bert.alert( error.reason, 'danger' );
-  	    console.log(error);}
-  	    };    
+
+  // Tracker.autorun( function() {
+  //   let evalId = Session.get( 'editingEval' );
+  //   Meteor.subscribe( 'evaluation', evalId );
+  // });
 });
 
 Template.editEvalModal.helpers({
-	Evals3: function () {
-	    var Evals3 = Evaluations.find({},{sort: {prio: 1}});
-	    return Evals3;
-	}
-});
+  evaluation() {
+    let evalId = Session.get( 'editingEval' ),
+        eval   = Evaluations.findOne( evalId );
 
-
-Template.editEvalModal.helpers({
+    if ( eval ) {
+      return eval;
+    }
+  },
   empls: function () {
-	var empls = Users.find({},{sort: {last: 1}});
-	return empls;
+	  var empls = Meteor.users.find( {} );
+ 	  if ( empls ) {
+      return empls.map( ( item ) => {
+        return { _id: item._id, name: item.profile.name };
+      });
+    }
   },
   mngrs: function () {
-      var mngrs = Users.find({roles: "manager"},{sort: {last: 1}});
-      return mngrs;
+    var mngrs = Meteor.users.find( { roles: [ 'manager' ] } );
+    if ( mngrs ) {
+      return mngrs.map( ( item ) => {
+        return { _id: item._id, name: item.profile.name };
+      });
+    }
   }
 });
 
@@ -48,28 +48,32 @@ Template.editEvalModal.events({
 	    }
 	  };
 	},
-  'keyup [name="editEval"]' ( event, template ) {
-    if ( event.keyCode === 13 ) {
-	  let evaluation = event.target.value,
-      description  = template.find( "[name='editObjective'] option:selected" ).value;
-     
-      Meteor.call( 'editEval', { _id: this._id }, ( error, response ) => {
+  'submit form' ( event, template ) {
+    event.preventDefault();
+
+    let evalId = Session.get( 'editingEval' ),
+        update = {
+          _id: evalId,
+          emplId: template.find( '[name="emplId"]' ).value,
+          managerId: template.find( '[name="managerId"]' ).value,
+          prio: template.find( '[name="prio"] option:selected' ).value,
+          evalStatus: template.find( '[name="evalStatus"] option:selected' ).value,
+          evalStartDate: template.find( '[name="evalStartDate"]' ).value,
+          evalEndDate: template.find( '[name="evalEndDate"]' ).value,
+          crazyWish: template.find( '[name="crazyWish"]' ).value
+        };
+
+    if ( evalId ) {
+      Meteor.call( 'editEvaluation', update, ( error, response ) => {
         if ( error ) {
           Bert.alert( error.reason, 'danger' );
         } else {
           Bert.alert( 'Worked', 'success' );
+          $( '#editEval-modal' ).modal( 'hide' );
         }
       });
+    } else {
+      Bert.alert( 'Need an evaluation to edit!', 'danger' );
     }
-  },
-  'click .editEval' ( event, template ) {
-    let evalId = Session.get( 'currentEvaluationId' );
-    Meteor.call( 'editEvaluation', { evaluationId: evalId }, ( error, response ) => {
-      if ( error ) {
-        Bert.alert( error.reason, 'danger' );
-      } else {
-        Bert.alert( 'Worked', 'success' );
-      }
-    });
   }
 });

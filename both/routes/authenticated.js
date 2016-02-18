@@ -71,3 +71,10 @@ authenticatedRoutes.route( '/employees', {
     BlazeLayout.render( 'default', { yield: 'employees' } );
   }
 });
+
+authenticatedRoutes.route( '/reviews', {
+  name: 'reviews',
+  action() {
+    BlazeLayout.render( 'default', { yield: 'reviews' } );
+  }
+});
